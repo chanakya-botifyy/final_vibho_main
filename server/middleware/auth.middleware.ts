@@ -2,19 +2,6 @@ import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { User } from '../models/user.model';
 
-// Extend Express Request interface to include user
-declare global {
-  namespace Express {
-    interface Request {
-      user: {
-        id: string;
-        role: string;
-        tenantId: string;
-      };
-    }
-  }
-}
-
 export const authMiddleware = async (req: Request, res: Response, next: NextFunction) => {
   try {
     // Get token from header
