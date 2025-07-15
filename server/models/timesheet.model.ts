@@ -121,4 +121,4 @@ timesheetSchema.index({ weekStartDate: 1, weekEndDate: 1 });
 
 const Timesheet = mongoose.model('Timesheet', timesheetSchema);
 
-module.exports = { Timesheet, TimesheetStatus };
+export { Timesheet, TimesheetStatus };
