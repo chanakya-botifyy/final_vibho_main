@@ -1,0 +1,38 @@
+"esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "module": "ESNext",
+    "target": "es2020",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "strict": true,
+    "outDir": "./dist",
+    "allowJs": true,
+    "checkJs": false,
+    "allowImportingTsExtensions": true,
+    "typeRoots": [
+      "./server/types",
+      "./node_modules/@types"
+    ],
+    "noEmit": true
+  },
+=======
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "module": "ESNext",
+    "target": "es2020",
+    "moduleResolution": "NodeNext",
+    "resolveJsonModule": true,
+    "strict": true,
+    "outDir": "./dist",
+    "allowJs": true,
+    "checkJs": false,
+    "allowImportingTsExtensions": true,
+    "typeRoots": [
+      "./server/types",
+      "./node_modules/@types"
+    ],
+    "noEmit": true,
+    "isolatedModules": true,
+    "moduleDetection": "force"
+  },

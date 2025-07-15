@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "module": "NodeNext",
+    "target": "es2020",
+    "moduleResolution": "NodeNext",
+    "resolveJsonModule": true,
+    "strict": true,
+    "outDir": "./dist",
+    "allowJs": true,
+    "checkJs": false,
+    "allowImportingTsExtensions": true,
+    "typeRoots": [
+      "./server/types",
+      "./node_modules/@types"
+    ],
+    "noEmit": true,
+    "isolatedModules": true,
+    "moduleDetection": "force"
+  },
+  "include": [
+    "server/**/*"
+  ],
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
+}
