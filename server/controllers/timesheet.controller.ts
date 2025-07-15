@@ -287,7 +287,7 @@ export  const getTimesheets = async (req: AuthenticatedRequest, res: Response) =
     const { employeeId, status, startDate, endDate, page = 1, limit = 10 } = req.query;
 
     // Build query
-    const query = { tenantId };
+    const query: any = { tenantId };
 
     // Filter by employee
     if (employeeId) {

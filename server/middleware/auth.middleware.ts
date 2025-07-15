@@ -3,7 +3,7 @@ import { Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { User } from '../models/user.model';
 
-interface AuthenticatedRequest extends express.Request {
+export interface AuthenticatedRequest extends express.Request {
   user: {
     id: string;
     role: string;
