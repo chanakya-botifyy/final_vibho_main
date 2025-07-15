@@ -3,7 +3,15 @@ import { Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { User } from '../models/user.model';
 
-export const authMiddleware = async (req: express.Request, res: Response, next: NextFunction) => {
+interface AuthenticatedRequest extends express.Request {
+  user: {
+    id: string;
+    role: string;
+    tenantId: string;
+  };
+}
+
+export const authMiddleware = async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
   try {
     // Get token from header
     const authHeader = req.header('Authorization');
@@ -42,7 +50,7 @@ export const authMiddleware = async (req: express.Request, res: Response, next: 
 
 // Role-based authorization middleware
 export const authorize = (roles: string[]) => {
-  return (req: express.Request, res: Response, next: NextFunction) => {
+  return (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
     if (!roles.includes(req.user.role)) {
       return res.status(403).json({ message: 'Unauthorized access' });
     }
