@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 
 import { Timesheet, TimesheetStatus } from '../models/timesheet.model';
 import { Project } from '../models/project.model';
-import { Employee } from '../models/employee.model';
+import Employee from '../models/employee.model';
 import { UserRole } from '../models/user.model';
 import mongoose from 'mongoose';
 import { startOfWeek, endOfWeek } from 'date-fns';
@@ -65,7 +65,8 @@ export  const createTimesheet = async (req: Request, res: Response) => {
       timesheet
     });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    const message = error instanceof Error ? error.message : 'Unknown error';
+    res.status(500).json({ message });
   }
 };
 
@@ -119,7 +120,8 @@ export  const updateTimesheet = async (req: Request, res: Response) => {
       timesheet
     });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    const message = error instanceof Error ? error.message : 'Unknown error';
+    res.status(500).json({ message });
   }
 };
 
@@ -164,7 +166,8 @@ export  const submitTimesheet = async (req: Request, res: Response) => {
       timesheet
     });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    const message = error instanceof Error ? error.message : 'Unknown error';
+    res.status(500).json({ message });
   }
 };
 
@@ -216,7 +219,8 @@ export  const approveTimesheet = async (req: Request, res: Response) => {
       timesheet
     });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    const message = error instanceof Error ? error.message : 'Unknown error';
+    res.status(500).json({ message });
   }
 };
 
@@ -269,7 +273,8 @@ export  const rejectTimesheet = async (req: Request, res: Response) => {
       timesheet
     });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    const message = error instanceof Error ? error.message : 'Unknown error';
+    res.status(500).json({ message });
   }
 };
 
@@ -356,7 +361,8 @@ export  const getTimesheets = async (req: Request, res: Response) => {
       }
     });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    const message = error instanceof Error ? error.message : 'Unknown error';
+    res.status(500).json({ message });
   }
 };
 
@@ -400,7 +406,8 @@ export  const getTimesheetById = async (req: Request, res: Response) => {
 
     res.status(200).json(timesheet);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    const message = error instanceof Error ? error.message : 'Unknown error';
+    res.status(500).json({ message });
   }
 };
 
@@ -499,6 +506,7 @@ export  const getTimesheetStats = async (req: Request, res: Response) => {
 
     res.status(200).json(stats);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    const message = error instanceof Error ? error.message : 'Unknown error';
+    res.status(500).json({ message });
   }
 };
