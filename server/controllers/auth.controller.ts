@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { User, UserRole } from '../models/user.model';
 import jwt from 'jsonwebtoken';
 import Employee from '../models/employee.model';
-import { AuthenticatedRequest } from '../middleware/auth.middleware';
+import * as express from 'express';
 
 // Register a new user
 export const register = async (req: Request, res: Response) => {
@@ -102,7 +102,7 @@ export const login = async (req: Request, res: Response) => {
 };
 
 // Get current user
-export const getCurrentUser = async (req: AuthenticatedRequest, res: Response) => {
+export const getCurrentUser = async (req: express.Request, res: Response) => {
   try {
     const user = await User.findById(req.user.id).select('-password');
     if (!user) {
@@ -166,7 +166,7 @@ export const refreshToken = async (req: Request, res: Response) => {
 };
 
 // Change password
-export const changePassword = async (req: AuthenticatedRequest, res: Response) => {
+export const changePassword = async (req: express.Request, res: Response) => {
   try {
     const { currentPassword, newPassword } = req.body;
     
