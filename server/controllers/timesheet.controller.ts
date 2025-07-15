@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { AuthenticatedRequest } from '../middleware/auth.middleware';
 
 import { Timesheet, TimesheetStatus } from '../models/timesheet.model';
 import { Project } from '../models/project.model';
@@ -8,7 +9,7 @@ import mongoose from 'mongoose';
 import { startOfWeek, endOfWeek } from 'date-fns';
 
 // Create timesheet
-export  const createTimesheet = async (req: Request, res: Response) => {
+export  const createTimesheet = async (req: AuthenticatedRequest, res: Response) => {
   try {
     const { id: userId, tenantId } = req.user;
     const { weekStartDate, entries } = req.body;
@@ -72,7 +73,7 @@ export  const createTimesheet = async (req: Request, res: Response) => {
 
   
 // Update timesheet
-export  const updateTimesheet = async (req: Request, res: Response) => {
+export  const updateTimesheet = async (req: AuthenticatedRequest, res: Response) => {
   try {
     const { id } = req.params;
     const { id: userId, tenantId } = req.user;
@@ -127,7 +128,7 @@ export  const updateTimesheet = async (req: Request, res: Response) => {
 
   
 // Submit timesheet
-export  const submitTimesheet = async (req: Request, res: Response) => {
+export  const submitTimesheet = async (req: AuthenticatedRequest, res: Response) => {
   try {
     const { id } = req.params;
     const { id: userId, tenantId } = req.user;
@@ -173,7 +174,7 @@ export  const submitTimesheet = async (req: Request, res: Response) => {
 
   
 // Approve timesheet
-export  const approveTimesheet = async (req: Request, res: Response) => {
+export  const approveTimesheet = async (req: AuthenticatedRequest, res: Response) => {
   try {
     const { id } = req.params;
     const { id: userId, tenantId, role } = req.user;
@@ -226,7 +227,7 @@ export  const approveTimesheet = async (req: Request, res: Response) => {
 
   
 // Reject timesheet
-export  const rejectTimesheet = async (req: Request, res: Response) => {
+export  const rejectTimesheet = async (req: AuthenticatedRequest, res: Response) => {
   try {
     const { id } = req.params;
     const { id: userId, tenantId, role } = req.user;
@@ -280,7 +281,7 @@ export  const rejectTimesheet = async (req: Request, res: Response) => {
 
   
 // Get timesheets
-export  const getTimesheets = async (req: Request, res: Response) => {
+export  const getTimesheets = async (req: AuthenticatedRequest, res: Response) => {
   try {
     const { tenantId, role, id: userId } = req.user;
     const { employeeId, status, startDate, endDate, page = 1, limit = 10 } = req.query;
@@ -368,7 +369,7 @@ export  const getTimesheets = async (req: Request, res: Response) => {
 
   
 // Get timesheet by ID
-export  const getTimesheetById = async (req: Request, res: Response) => {
+export  const getTimesheetById = async (req: AuthenticatedRequest, res: Response) => {
   try {
     const { id } = req.params;
     const { tenantId, role, id: userId } = req.user;
@@ -413,7 +414,7 @@ export  const getTimesheetById = async (req: Request, res: Response) => {
 
   
 // Get timesheet statistics
-export  const getTimesheetStats = async (req: Request, res: Response) => {
+export  const getTimesheetStats = async (req: AuthenticatedRequest, res: Response) => {
   try {
     const { tenantId, role, id: userId } = req.user;
     const { employeeId, startDate, endDate } = req.query;
